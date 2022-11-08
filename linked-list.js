@@ -1,14 +1,15 @@
-export class Node {
+class Node {
   constructor(data) {
     this.data = data;
     this._next = null;
   }
 
   set next(node) {
-    // consider not allowing null to avoid devious programming
+    // Consider not allowing null to avoid devious programming
     if (Object.prototype.isPrototypeOf(Node) || node === null) {
       this._next = node;
     } 
+    // Add error handling
   }
 
   get next() {
@@ -16,8 +17,8 @@ export class Node {
   }
 }
 
-export class LList {
-  /* If no data is passed, will return an empty list */
+class LinkedList {
+  /* If no data is passed, will return an empty LList */
   constructor(data = null) {
     if (!data) {
       this.head = null;
@@ -70,7 +71,7 @@ export class LList {
     return index;
   }
 
-  insertAfter(node, value) { // Condider generating node here
+  insertAfter(value, node) { // Condider generating node here if option not passed
     let seeker = this.head;
     for (let i = 0; i < this.index(value); i++) {
       seeker = seeker.next;
@@ -79,7 +80,7 @@ export class LList {
     seeker.next = node;
   }
 
-  insertBefore(node, value) { // Condider generating node here
+  insertBefore(value, node) { // Condider generating node here if option not passed
     let seeker = this.head;
     for (let i = 0; i < this.index(value) - 1; i++) {
       seeker = seeker.next;
@@ -147,3 +148,6 @@ export class LList {
     return count;
   }
 }
+
+exports.Node = Node;
+exports.LinkedList = LinkedList;
